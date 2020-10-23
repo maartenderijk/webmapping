@@ -4,50 +4,26 @@ let map = new mapboxgl.Map({
     container: 'map',
     style: {
         "version": 8,
-        "name": "Basic",
+        "name": "Mapbox",
         "sources": {
-            "wegvakken": {
-                'type': 'vector',
+            "esri-basemap": {
+                'type': 'raster',
                 'tiles': [
-                    serverUrl
+                    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
                 ],
-                'minzoom': 0,
-                'maxzoom': 14
+                'tileSize': 256,
+                'attribution': 'ESRI ArcGIS Online',
             }
         },
-        "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf", 
-        
-        "layers": [{
-            'id': 'wegvakken_100',
-            'type': 'line',
-            'source': 'wegvakken',
-            'source-layer': 'Prognosejaar',
-            "filter": [">", ["get", "FlowVehETM"], 100],
-            "minzoom": 10,
-            'paint': {
-                "line-width": [
-                    "interpolate",
-                    ["linear"],
-                    ["zoom"],
-                    12,
-                    3,
-                    22,
-                    1
-                ],
-                "line-color": [
-                    "interpolate",
-                    ["linear"],
-                    ["get", "FlowVehETM"],
-                    0,
-                    "hsl(134, 74%, 33%)",
-                    18706,
-                    "hsl(46, 89%, 54%)",
-                    37412.58,
-                    "hsl(0, 89%, 54%)"
-                ]
-            },
-        }
+        "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
 
+        "layers": [{
+            'id': 'basemap',
+            'type': 'raster',
+            'source': 'esri-basemap',
+            'minzoom': 0,
+            'maxzoom': 20
+        }
         ]
 
     },
@@ -56,6 +32,45 @@ let map = new mapboxgl.Map({
 });
 
 map.on('load', function () {
+    map.addSource('wegvakken', {
+        'type': 'vector',
+        'tiles': [
+            'http://localhost:5500/tiles/{z}/{x}/{y}.pbf'
+        ],
+        'minzoom': 0,
+        'maxzoom': 14
+    });
+
+    map.addLayer({
+        'id': 'wegvakken_100',
+        'type': 'line',
+        'source': 'wegvakken',
+        'source-layer': 'Prognosejaar',
+        "filter": [">", ["get", "FlowVehETM"], 100],
+        "minzoom": 10,
+        'paint': {
+            "line-width": [
+                "interpolate",
+                ["linear"],
+                ["zoom"],
+                12,
+                3,
+                22,
+                1
+            ],
+            "line-color": [
+                "interpolate",
+                ["linear"],
+                ["get", "FlowVehETM"],
+                0,
+                "hsl(134, 74%, 33%)",
+                18706,
+                "hsl(46, 89%, 54%)",
+                37412.58,
+                "hsl(0, 89%, 54%)"
+            ]
+        },
+    });
 
     map.addLayer({
         'id': 'wegvakken_all',
