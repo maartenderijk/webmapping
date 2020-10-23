@@ -15,7 +15,7 @@ let map = new mapboxgl.Map({
                 'maxzoom': 14
             }
         },
-        "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf", // Check https://github.com/openmaptiles/fonts
+        "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf", 
         
         "layers": [{
             'id': 'wegvakken_100',
