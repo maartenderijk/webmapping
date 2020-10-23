@@ -15,7 +15,9 @@ let map = new mapboxgl.Map({
                 'maxzoom': 14
             }
         },
-        layers: [{
+        "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf", // Check https://github.com/openmaptiles/fonts
+        
+        "layers": [{
             'id': 'wegvakken_100',
             'type': 'line',
             'source': 'wegvakken',
@@ -77,8 +79,6 @@ map.on('load', function () {
         }
     });
 
-    // not working yet
-    // see: https://github.com/mapbox/mapbox-gl-js/issues/4808
     map.addLayer({
         'id': 'wegvakken_labels',
         'type': 'symbol',
@@ -101,7 +101,7 @@ map.on('load', function () {
                 22,
                 "line-center"
             ],
-            "text-font": ["Overpass Regular", "Arial Unicode MS Regular"],
+            'text-font': ['Open Sans Bold'],
             "text-offset": [0, 0],
             "text-padding": 5,
             "icon-size": 1.5,
