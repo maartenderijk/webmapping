@@ -11,6 +11,7 @@
 <body>
     <div id='map'></div>
     <script>
+        const serverUrl = 'http://localhost:5500/tiles/{z}/{x}/{y}.pbf'
 
         let map = new mapboxgl.Map({
             container: 'map',
@@ -21,7 +22,7 @@
                     "wegvakken": {
                         'type': 'vector',
                         'tiles': [
-                            'http://localhost:5500/tiles/{z}/{x}/{y}.pbf'
+                            serverUrl
                         ],
                         'minzoom': 0,
                         'maxzoom': 14
@@ -89,6 +90,8 @@
                 }
             });
 
+            // not working yet
+            // see: https://github.com/mapbox/mapbox-gl-js/issues/4808
             map.addLayer({
                 'id': 'wegvakken_labels',
                 'type': 'symbol',
