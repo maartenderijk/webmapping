@@ -9,9 +9,9 @@ Testing mapbox gl client without API key
 ![Example](https://github.com/maartenderijk/webmapping/blob/master/static/mapbox.png?raw=true)
 
 # Documentation
-[Mapbox Documentation](https://docs.mapbox.com/mapbox-gl-js/)
-Local tiles generated with [Tippecanoe](https://github.com/mapbox/tippecanoe) and [this Docker Image](https://hub.docker.com/r/klokantech/tippecanoe).
-Working with [fonts/glyps](https://github.com/openmaptiles/fonts)
+- [Mapbox Documentation](https://docs.mapbox.com/mapbox-gl-js/)
+- Local tiles generated with [Tippecanoe](https://github.com/mapbox/tippecanoe) and [this Docker Image](https://hub.docker.com/r/klokantech/tippecanoe).
+- Working with [fonts/glyps](https://github.com/openmaptiles/fonts)
 
 
 
