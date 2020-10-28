@@ -1,0 +1,23 @@
+{
+    "version": 8,
+    "name": "Mapbox",
+    "sources": {
+        "esri-basemap": {
+            "type": "raster",
+            "tiles": [
+                "https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}"
+            ],
+            "tileSize": 256,
+            "attribution": "ESRI ArcGIS Online"
+        }
+    },
+    "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
+
+    "layers": [{
+        "id": "basemap",
+        "type": "raster",
+        "source": "esri-basemap",
+        "minzoom": 0,
+        "maxzoom": 19
+    }]
+}

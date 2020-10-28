@@ -2,31 +2,7 @@ const serverUrl = 'http://localhost:5500/tiles/{z}/{x}/{y}.pbf'
 
 let map = new mapboxgl.Map({
     container: 'map',
-    style: {
-        "version": 8,
-        "name": "Mapbox",
-        "sources": {
-            "esri-basemap": {
-                'type': 'raster',
-                'tiles': [
-                    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}'
-                ],
-                'tileSize': 256,
-                'attribution': 'ESRI ArcGIS Online',
-            }
-        },
-        "glyphs": "http://fonts.openmaptiles.org/{fontstack}/{range}.pbf",
-
-        "layers": [{
-            'id': 'basemap',
-            'type': 'raster',
-            'source': 'esri-basemap',
-            'minzoom': 0,
-            'maxzoom': 20
-        }
-        ]
-
-    },
+    style: '/js/achtergrond.json',
     center: [5.9866112, 51.1829362],
     zoom: 12
 });
@@ -35,7 +11,7 @@ map.on('load', function () {
     map.addSource('wegvakken', {
         'type': 'vector',
         'tiles': [
-            'http://localhost:5500/tiles/{z}/{x}/{y}.pbf'
+            serverUrl 
         ],
         'minzoom': 0,
         'maxzoom': 14
@@ -128,6 +104,8 @@ map.on('load', function () {
         }
 
     })
+
+    
 
 
 })
